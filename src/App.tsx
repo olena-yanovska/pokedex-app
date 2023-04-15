@@ -1,35 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React, { useEffect, useState } from 'react';
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+export const App: React.FC = () => {
+  const [pokemons, setPokemons] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
+
+  const API_URL = 'https://pokeapi.co/api/v2/pokemon/?limit=20';
+
+  function wait(delay: number) {
+    return new Promise(resolve => setTimeout(resolve, delay));
+  }
+  
+  function getPokemons() {
+    // keep this delay for testing purpose
+    return wait(500)
+      .then(() => fetch(API_URL))
+      .then(response => response.json());
+  }
+
+  const loadPokemons = async () => {
+    try {
+      setIsLoading(true);
+
+      const pokemons = await getPokemons();
+      setPokemons(pokemons.results);
+      console.log('pokemons', pokemons)
+    } catch (error) {
+      setIsError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadPokemons();
+  }, []);
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <header className="App-header">
+        <h1>Pokedex App</h1>
+      </header>
+      <main>
+        {isLoading ? (
+          <h1>Loading...</h1>
+        ) : (
+          <div className="pokemonsList">
+            {pokemons && pokemons.map(pokemon => (
+              <div className="pokemon">
+                <div>{pokemon.name}</div>
+              </div>
+            ))}
+          </div>
+        )}
+      </main>
     </div>
-  )
+  );
 }
-
-export default App
