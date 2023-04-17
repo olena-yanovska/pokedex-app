@@ -1,0 +1,10 @@
+.pokemons-list {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+  grid-template-columns: repeat(auto-fill, minmax(229px, 1fr));
+
+  margin-bottom: 24px;
+}

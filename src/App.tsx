@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css'
+import { PokemonList } from './components/PokemonList/PokemonList';
 
 export const App: React.FC = () => {
   const [pokemons, setPokemons] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  const API_URL = 'https://pokeapi.co/api/v2/pokemon/?limit=5';
+  const API_URL = 'https://pokeapi.co/api/v2/pokemon/?limit=25';
 
   const loadPokemons = async () => {
     try {
@@ -50,28 +51,13 @@ export const App: React.FC = () => {
         ) : (
           <div className='pokemons-wrapper'>
             <div className="pokemons-list-wrapper">
-            <div className="pokemons-list">
-              {pokemons && pokemons.map(pokemon => (
-                <div className="pokemon-card">
-                  <img
-                    className="pokemon-image"
-                    src={pokemon.sprites.front_default}
-                    alt=""
-                  />
-                  <div className='pokemon-name'>{pokemon.name}</div>
-                  <div className='pokemon-types'>
-                    {pokemon.types.map((pokemon: any) => {
-                      return (
-                        <button className="button is-success pokemon-type">{pokemon.type.name}</button>
-                      )
-                    })}
-                  </div>
-                </div>
-              ))}
-            </div>
+              <PokemonList 
+                pokemons={pokemons} 
+              />
 
-            <button className='button is-link load-more-btn'>Load more</button>
-
+              <button className='button is-link load-more-btn'>
+                Load more
+              </button>
             </div>
 
             <div className='pokemons-data'>
