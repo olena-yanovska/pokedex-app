@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css'
 import { PokemonList } from './components/PokemonList/PokemonList';
+import { PokemonSpec } from './components/PokemonSpec/PokemonSpec';
 
 export const App: React.FC = () => {
   const [pokemons, setPokemons] = useState<any[]>([]);
+  const [choosenPokemon, setChoosenPokemon] = useState<any | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  const API_URL = 'https://pokeapi.co/api/v2/pokemon/?limit=25';
+  const API_URL = 'https://pokeapi.co/api/v2/pokemon/?limit=20';
 
   const loadPokemons = async () => {
     try {
@@ -51,8 +53,9 @@ export const App: React.FC = () => {
         ) : (
           <div className='pokemons-wrapper'>
             <div className="pokemons-list-wrapper">
-              <PokemonList 
-                pokemons={pokemons} 
+              <PokemonList
+                pokemons={pokemons}
+                setChoosenPokemon={setChoosenPokemon}
               />
 
               <button className='button is-link load-more-btn'>
@@ -60,9 +63,10 @@ export const App: React.FC = () => {
               </button>
             </div>
 
-            <div className='pokemons-data'>
-              Pokemon Data
-            </div>
+            <PokemonSpec 
+              pokemon={choosenPokemon} 
+              setChoosenPokemon={setChoosenPokemon}
+            />
           </div>
         )}
       </main>
