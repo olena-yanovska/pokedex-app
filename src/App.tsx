@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './App.css'
+import './App.scss'
 import { PokemonList } from './components/PokemonList/PokemonList';
 import { PokemonSpec } from './components/PokemonSpec/PokemonSpec';
 
@@ -45,9 +45,11 @@ export const App: React.FC = () => {
   return (
     <div className="App">
       <header className="header">
-        <h1 className='header-text'>Pokedex</h1>
+        <a href="/">
+          <h1 className='header-text'>Pokedex</h1>
+        </a>
       </header>
-      <main>
+      <main className='main'>
         {isLoading ? (
           <h1>Loading...</h1>
         ) : (
@@ -62,13 +64,15 @@ export const App: React.FC = () => {
                 Load more
               </button>
             </div>
-
-            <PokemonSpec 
-              pokemon={choosenPokemon} 
-              setChoosenPokemon={setChoosenPokemon}
-            />
           </div>
         )}
+
+        <div className='pokemons-data'>
+          <PokemonSpec
+            pokemon={choosenPokemon}
+            setChoosenPokemon={setChoosenPokemon}
+          />
+        </div>
       </main>
     </div>
   );

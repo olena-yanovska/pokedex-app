@@ -1,5 +1,5 @@
 import React, { Dispatch } from 'react';
-import './Pokemon.css';
+import './Pokemon.scss';
 
 interface Props {
   pokemon: any,

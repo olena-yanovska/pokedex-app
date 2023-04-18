@@ -1,5 +1,5 @@
 import React from 'react';
-import './PokemonSpec.css';
+import './PokemonSpec.scss';
 import { PokemonData, Types } from '../../types/PokemonData';
 
 interface Props {
@@ -16,7 +16,7 @@ export const PokemonSpec: React.FC<Props> = ({ pokemon, setChoosenPokemon }) => 
     .join(', ');
 
   return (
-    <div className='pokemons-data'>
+    <div>
       {pokemon && (
         <div className='pokemon-spec'>
           <img

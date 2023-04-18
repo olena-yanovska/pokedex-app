@@ -1,10 +1,24 @@
-/* * {
-  border: 1px solid black;
-} */
+@import "./styles/utils/variables.scss";
+
+// * {
+//   border: 1px solid black;
+// } 
 
 .App {
   margin: 0 auto;
-  max-width: 1200px;
+  padding: 0 20px;
+
+  @include onDesktop {
+    padding: 0 100px;
+  }
+  
+  @include onTablet {
+    padding: 0 100px;
+  }
+}
+
+.main {
+  position: relative;
 }
 
 .header {
@@ -32,9 +46,12 @@
 .pokemons-list-wrapper {
   width: 100%;
   padding: 0 20px;
+  margin-right: calc($pokemonInfoWidth + 30px); 
 }
 
-
+.pokemons-data {
+  width: $pokemonInfoWidth;
+}
 
 .load-more-btn {
   width: 100%;
