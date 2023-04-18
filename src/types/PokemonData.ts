@@ -6,6 +6,7 @@ export interface PokemonData {
   weight: number;
   moves: Move[];
   stats: Stats[];
+  url: string;
 }
 
 export interface Sprites {

@@ -1,8 +1,12 @@
+@import "../../styles/utils/variables.scss";
+
 .pokemon-card {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  width: 100%;
 
   padding: 20px;
 
@@ -12,7 +16,7 @@
 }
 
 .pokemon-image {
-  height: 120px;
+  height: 150px;
   margin-bottom: 10px;
 }
 

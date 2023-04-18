@@ -11,7 +11,7 @@ export const Pokemon: React.FC<Props> = ({ pokemon, setChoosenPokemon }) => {
     <div className="pokemon-card" onClick={() => setChoosenPokemon(pokemon)}>
       <img
         className="pokemon-image"
-        src={pokemon.sprites.other.dream_world.front_default}
+        src={pokemon.sprites?.other.dream_world.front_default}
         alt={pokemon.name}
       />
       <div className='pokemon-name'>{pokemon.name}</div>

@@ -3,20 +3,50 @@ import axios from 'axios';
 import './App.scss'
 import { PokemonList } from './components/PokemonList/PokemonList';
 import { PokemonSpec } from './components/PokemonSpec/PokemonSpec';
+import { PokemonData } from './types/PokemonData';
 
 export const App: React.FC = () => {
   const [pokemons, setPokemons] = useState<any[]>([]);
   const [choosenPokemon, setChoosenPokemon] = useState<any | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon/?limit=3&offset=0');
+  const [isMoreAvailable, setIsMoreAvailable] = useState(true);
 
-  const API_URL = 'https://pokeapi.co/api/v2/pokemon/?limit=20';
+    const loadMore = async (event: any) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (url && isMoreAvailable) {
+        setIsLoading(true);
+
+        try {
+          const result = await axios.get(url);
+          setUrl(result.data.next);
+          loadPokemonData(result.data.results, true);
+
+          setTimeout(() => {
+            const button = document.querySelector('#load-more-btn');
+            button?.scrollIntoView({ behavior: 'smooth' });
+          }, 500);
+        } catch (error) {
+          setIsError(true);
+          console.log('Error with loading')
+        } finally {
+          setIsLoading(false);
+        }
+      } else {
+        setIsMoreAvailable(false);
+      }
+    };
 
   const loadPokemons = async () => {
     try {
       setIsLoading(true);
 
-      const result = await axios.get(API_URL);
+      const result = await axios.get(url);
+      setUrl(result.data.next);
+
       loadPokemonData(result.data.results);
     } catch (error) {
       setIsError(true);
@@ -26,16 +56,21 @@ export const App: React.FC = () => {
     }
   };
 
-  const loadPokemonData = async (result: any) => {
-    const promises = result.map(async (pokemon: any) => {
+  const loadPokemonData = async (result: any, isLoadMore = false) => {
+    
+    const promises = result.map(async (pokemon: PokemonData) => {
       const result = await axios.get(pokemon.url);
       console.log('result', result);
       return result.data;
     });
 
     const pokemonData = await Promise.all(promises);
-    console.log('pokemonData', pokemonData);
-    setPokemons(pokemonData);
+    
+    if (isLoadMore) {
+      setPokemons([...pokemons, ...pokemonData]);
+    } else {
+      setPokemons(pokemonData);
+    }
   }
 
   useEffect(() => {
@@ -60,9 +95,15 @@ export const App: React.FC = () => {
                 setChoosenPokemon={setChoosenPokemon}
               />
 
-              <button className='button is-link load-more-btn'>
-                Load more
-              </button>
+              {isMoreAvailable && (
+                <button 
+                  id="load-more-btn"
+                  className='button is-link load-more-btn'
+                  onClick={loadMore}
+                >
+                  Load more
+                </button>
+              )}
             </div>
           </div>
         )}

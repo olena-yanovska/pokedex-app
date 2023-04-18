@@ -1,5 +1,5 @@
 import React, { Dispatch } from 'react';
-import './PokemonList.css';
+import './PokemonList.scss';
 import { PokemonListData } from '../../types/PokemonListData';
 import { Pokemon } from '../Pokemon/Pokemon';
 
