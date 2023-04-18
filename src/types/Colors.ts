@@ -1,5 +1,5 @@
 export const Colors: Record<string, string> = {
-  normal: 'has-background-success',
+  normal: 'has-background-success has-text-info-light',
   fire: 'has-background-danger has-text-info-light',
   water: 'has-background-info has-text-info-light',
   electric: 'has-background-warning',
@@ -11,10 +11,10 @@ export const Colors: Record<string, string> = {
   flying: 'has-background-danger-light',
   psychic: 'has-background-primary-light',
   bug: 'has-background-success-dark has-text-info-light',
-  rock: 'has-background-primary',
-  ghost: 'has-background-light',
-  dragon: 'has-background-danger',
-  dark: 'has-background-grey',
+  rock: 'has-background-primary has-text-info-light',
+  ghost: 'has-background-light ',
+  dragon: 'has-background-danger has-text-info-light',
+  dark: 'has-background-grey has-text-info-light',
   steel: 'has-background-grey-lighter',
   fairy: 'has-background-warning-light',
 };

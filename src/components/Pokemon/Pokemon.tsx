@@ -25,10 +25,11 @@ export const Pokemon: React.FC<Props> = ({ pokemon, setChoosenPokemon }) => {
           return (
             <button 
               className={cn(
-                'button pokemon-type',
+                'button is-static pokemon-type',
                 Colors[pokemon.type.name]
               )}
               key={pokemon.type.name}
+              id='pokemon-type'
             >
               {pokemon.type.name}
             </button>

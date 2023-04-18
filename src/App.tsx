@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import cn from 'classNames';
 import axios from 'axios';
 import './App.scss'
 import { PokemonList } from './components/PokemonList/PokemonList';
@@ -10,36 +11,36 @@ export const App: React.FC = () => {
   const [choosenPokemon, setChoosenPokemon] = useState<any | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon/?limit=3&offset=0');
+  const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon/?limit=100&offset=0');
   const [isMoreAvailable, setIsMoreAvailable] = useState(true);
 
   const loadMoreButtonRef = useRef<HTMLButtonElement>(null);
 
-    const loadMore = async (event: React.MouseEvent<HTMLButtonElement>) => {
+  const loadMore = async (event: React.MouseEvent<HTMLButtonElement>) => {
 
-      if (url && isMoreAvailable) {
-        setIsLoading(true);
-        event.preventDefault();
+    if (url && isMoreAvailable) {
+      setIsLoading(true);
+      event.preventDefault();
 
-        try {
-          const result = await axios.get(url);
-          setUrl(result.data.next);
-          loadPokemonData(result.data.results, true);
+      try {
+        const result = await axios.get(url);
+        setUrl(result.data.next);
+        loadPokemonData(result.data.results, true);
 
-          setTimeout(() => {
-            loadMoreButtonRef.current?.scrollIntoView({ behavior: 'smooth' });
-          }, 500);
-          
-        } catch (error) {
-          setIsError(true);
-          console.log('Error with loading')
-        } finally {
-          setIsLoading(false);
-        }
-      } else {
-        setIsMoreAvailable(false);
+        setTimeout(() => {
+          loadMoreButtonRef.current?.scrollIntoView({ behavior: 'smooth' });
+        }, 500);
+
+      } catch (error) {
+        setIsError(true);
+        console.log('Error with loading')
+      } finally {
+        setIsLoading(false);
       }
-    };
+    } else {
+      setIsMoreAvailable(false);
+    }
+  };
 
   const loadPokemons = async () => {
     try {
@@ -58,7 +59,6 @@ export const App: React.FC = () => {
   };
 
   const loadPokemonData = async (result: any, isLoadMore = false) => {
-    
     const promises = result.map(async (pokemon: PokemonData) => {
       const result = await axios.get(pokemon.url);
       console.log('result', result);
@@ -66,7 +66,7 @@ export const App: React.FC = () => {
     });
 
     const pokemonData = await Promise.all(promises);
-    
+
     if (isLoadMore) {
       setPokemons([...pokemons, ...pokemonData]);
     } else {
@@ -86,28 +86,27 @@ export const App: React.FC = () => {
         </a>
       </header>
       <main className='main'>
-        {isLoading ? (
-          <h1>Loading...</h1>
-        ) : (
-          <div className='pokemons-wrapper'>
-            <div className="pokemons-list-wrapper">
-              <PokemonList
-                pokemons={pokemons}
-                setChoosenPokemon={setChoosenPokemon}
-              />
+        <div className='pokemons-wrapper'>
+          <div className="pokemons-list-wrapper">
+            <PokemonList
+              pokemons={pokemons}
+              setChoosenPokemon={setChoosenPokemon}
+            />
 
-              {isMoreAvailable && (
-                <button 
-                  ref={loadMoreButtonRef}
-                  className='button is-link load-more-btn'
-                  onClick={loadMore}
-                >
-                  Load more
-                </button>
-              )}
-            </div>
+            {isMoreAvailable && (
+              <button
+                ref={loadMoreButtonRef}
+                className={cn(
+                  'button is-link load-more-btn',
+                  { 'is-loading': isLoading }
+                )}
+                onClick={loadMore}
+              >
+                Load more
+              </button>
+            )}
           </div>
-        )}
+        </div>
 
         <div className='pokemons-data'>
           <PokemonSpec
