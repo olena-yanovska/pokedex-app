@@ -9,6 +9,12 @@ interface Props {
 }
 
 export const Pokemon: React.FC<Props> = ({ pokemon, setChoosenPokemon }) => {
+  let imageUrl = './pokemon-default.png';
+
+  if (pokemon.sprites?.other.dream_world.front_default) {
+    imageUrl = pokemon.sprites?.other.dream_world.front_default;
+  }
+  
   return (
     <div 
       className="pokemon-card" 
@@ -16,7 +22,7 @@ export const Pokemon: React.FC<Props> = ({ pokemon, setChoosenPokemon }) => {
     >
       <img
         className="pokemon-image"
-        src={pokemon.sprites?.other.dream_world.front_default}
+        src={imageUrl}
         alt={pokemon.name}
       />
       <div className='pokemon-name'>{pokemon.name}</div>

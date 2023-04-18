@@ -15,12 +15,18 @@ export const PokemonSpec: React.FC<Props> = ({ pokemon, setChoosenPokemon }) => 
     (pokemon: Types) => pokemon.type.name)
     .join(', ');
 
+    let imageUrl = './pokemon-default.png';
+
+    if (pokemon?.sprites.other.dream_world.front_default) {
+      imageUrl = pokemon?.sprites.other.dream_world.front_default;
+    }
+
   return (
     <div>
       {pokemon && (
         <div className='pokemon-spec'>
           <img
-            src={pokemon?.sprites.other.dream_world.front_default}
+            src={imageUrl}
             alt={pokemon?.name}
             className="pokemon-spec__image"
           />
