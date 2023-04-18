@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import './App.scss'
 import { PokemonList } from './components/PokemonList/PokemonList';
@@ -13,12 +13,13 @@ export const App: React.FC = () => {
   const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon/?limit=3&offset=0');
   const [isMoreAvailable, setIsMoreAvailable] = useState(true);
 
-    const loadMore = async (event: any) => {
-      event.preventDefault();
-      event.stopPropagation();
+  const loadMoreButtonRef = useRef<HTMLButtonElement>(null);
+
+    const loadMore = async (event: React.MouseEvent<HTMLButtonElement>) => {
 
       if (url && isMoreAvailable) {
         setIsLoading(true);
+        event.preventDefault();
 
         try {
           const result = await axios.get(url);
@@ -26,9 +27,9 @@ export const App: React.FC = () => {
           loadPokemonData(result.data.results, true);
 
           setTimeout(() => {
-            const button = document.querySelector('#load-more-btn');
-            button?.scrollIntoView({ behavior: 'smooth' });
+            loadMoreButtonRef.current?.scrollIntoView({ behavior: 'smooth' });
           }, 500);
+          
         } catch (error) {
           setIsError(true);
           console.log('Error with loading')
@@ -97,7 +98,7 @@ export const App: React.FC = () => {
 
               {isMoreAvailable && (
                 <button 
-                  id="load-more-btn"
+                  ref={loadMoreButtonRef}
                   className='button is-link load-more-btn'
                   onClick={loadMore}
                 >

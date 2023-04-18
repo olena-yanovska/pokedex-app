@@ -14,6 +14,7 @@ export const PokemonList: React.FC<Props> = ({ pokemons, setChoosenPokemon }) =>
       {pokemons && pokemons.map(pokemon => (
         <Pokemon 
           pokemon={pokemon}
+          key={pokemon.name}
           setChoosenPokemon={setChoosenPokemon}
         />
       ))}

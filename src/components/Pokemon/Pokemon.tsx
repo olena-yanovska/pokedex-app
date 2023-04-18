@@ -1,5 +1,7 @@
 import React, { Dispatch } from 'react';
+import cn from 'classNames';
 import './Pokemon.scss';
+import { Colors } from '../../types/Colors';
 
 interface Props {
   pokemon: any,
@@ -8,7 +10,10 @@ interface Props {
 
 export const Pokemon: React.FC<Props> = ({ pokemon, setChoosenPokemon }) => {
   return (
-    <div className="pokemon-card" onClick={() => setChoosenPokemon(pokemon)}>
+    <div 
+      className="pokemon-card" 
+      onClick={() => setChoosenPokemon(pokemon)}
+    >
       <img
         className="pokemon-image"
         src={pokemon.sprites?.other.dream_world.front_default}
@@ -18,7 +23,15 @@ export const Pokemon: React.FC<Props> = ({ pokemon, setChoosenPokemon }) => {
       <div className='pokemon-types'>
         {pokemon.types.map((pokemon: any) => {
           return (
-            <button className="button is-success pokemon-type">{pokemon.type.name}</button>
+            <button 
+              className={cn(
+                'button pokemon-type',
+                Colors[pokemon.type.name]
+              )}
+              key={pokemon.type.name}
+            >
+              {pokemon.type.name}
+            </button>
           )
         })}
       </div>
