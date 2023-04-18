@@ -93,7 +93,7 @@ export const App: React.FC = () => {
               setChoosenPokemon={setChoosenPokemon}
             />
 
-            {isMoreAvailable && (
+            {isMoreAvailable ? (
               <button
                 ref={loadMoreButtonRef}
                 className={cn(
@@ -102,6 +102,10 @@ export const App: React.FC = () => {
                 )}
                 onClick={loadMore}
               >
+                Load more
+              </button>
+            ) : (
+              <button className='button is-link load-more-btn' disabled>
                 Load more
               </button>
             )}
