@@ -6,13 +6,17 @@
 
 .App {
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 100px;
+
+  @include onMobile {
+    padding: 0 20px;
+  }
+
+  @include onTablet {
+    padding: 0 20px;
+  }
 
   @include onDesktop {
-    padding: 0 100px;
-  }
-  
-  @include onTablet {
     padding: 0 100px;
   }
 }
@@ -46,7 +50,15 @@
 .pokemons-list-wrapper {
   width: 100%;
   padding: 0 20px;
-  margin-right: calc($pokemonInfoWidth + 30px); 
+  margin-right: 0;
+
+  @include onDesktop {
+    margin-right: calc($pokemonInfoWidth + 30px); 
+  }
+  
+  @include onTablet {
+    margin-right: calc($pokemonInfoWidth + 30px); 
+  }
 }
 
 .pokemons-data {

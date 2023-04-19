@@ -7,9 +7,7 @@ interface Props {
   setChoosenPokemon: (pokemon: PokemonData | null) => void,
 }
 
-export const PokemonSpec: React.FC<Props> = ({ pokemon, setChoosenPokemon }) => {
-  const isPokemonSpecVisible = pokemon;
-  console.log('isPokemonSpecVisible', isPokemonSpecVisible)
+export const PokemonSpec: React.FC<Props> = ({ pokemon }) => {
 
   const types = pokemon?.types.map(
     (pokemon: Types) => pokemon.type.name)

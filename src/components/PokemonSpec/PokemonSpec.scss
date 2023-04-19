@@ -6,6 +6,18 @@
   top: 160px;
   right: $pokemonInfoRightPosition;
 
+  @include onMobile {
+    right: 20px;
+  }
+
+  @include onTablet {
+    right: 20px;
+  }
+
+  @include onDesktop {
+    right: $pokemonInfoRightPosition;
+  }
+
   text-align: center;
   width: $pokemonInfoWidth;
 
