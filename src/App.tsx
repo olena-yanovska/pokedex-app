@@ -86,7 +86,7 @@ export const App: React.FC = () => {
   return (
     <div className="App">
       <header className="header">
-        <a href="/">
+        <a href="/pokedex-app/">
           <h1 className='header-text'>Pokedex</h1>
         </a>
       </header>
