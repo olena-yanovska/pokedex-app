@@ -14,6 +14,7 @@ You can find a live demo of the app here https://olena-yanovska.github.io/pokede
 ### Technologies
 HTML, CSS, SCSS, JavaScript, TypeScript, React.js, Axios, Bulma styles
 
+
 ## Setup
 To run this project locally, follow these steps:
 
@@ -30,7 +31,6 @@ Start the app:
 ```bash
 npm run dev
 ```
-The app will be available at http://localhost:3000.
 
 Push your updates
 ```bash

@@ -65,6 +65,7 @@
 .pokemons-list-wrapper {
   width: 100%;
   padding: 0 30px;
+  text-align: center;
   margin-right: calc($pokemonInfoWidth + 60px);
 
   @include onDesktop {
@@ -85,7 +86,7 @@
 }
 
 .load-more-btn {
-  width: 100%;
+  width: 40%;
   margin-bottom: 60px;
   font-weight: 600;
 }
