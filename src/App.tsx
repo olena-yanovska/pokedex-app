@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import cn from 'classNames';
 import axios from 'axios';
 import './App.scss'
@@ -23,30 +23,6 @@ export const App: React.FC = () => {
       return pokemons;
     }
   }, [pokemons, activeType]);
-
-
-  const loadMore = async (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (url && isMoreAvailable) {
-      setIsLoading(true);
-      event.preventDefault();
-
-      try {
-        const result = await axios.get(url);
-        console.log('url is', url);
-
-        setUrl(result.data.next);
-        loadPokemonData(result.data.results, true);
-
-      } catch (error) {
-        setIsError(true);
-        console.log('Error with loading')
-      } finally {
-        setIsLoading(false);
-      }
-    } else {
-      setIsMoreAvailable(false);
-    }
-  };
 
   const loadPokemons = async () => {
     try {
@@ -77,7 +53,30 @@ export const App: React.FC = () => {
     } else {
       setPokemons(pokemonData);
     }
-  }
+  };
+
+  const loadMore = useCallback(async (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (url && isMoreAvailable) {
+      setIsLoading(true);
+      event.preventDefault();
+
+      try {
+        const result = await axios.get(url);
+        console.log('url is', url);
+
+        setUrl(result.data.next);
+        loadPokemonData(result.data.results, true);
+
+      } catch (error) {
+        setIsError(true);
+        console.log('Error with loading')
+      } finally {
+        setIsLoading(false);
+      }
+    } else {
+      setIsMoreAvailable(false);
+    }
+  }, [url, isMoreAvailable, loadPokemonData]);
 
   useEffect(() => {
     loadPokemons();

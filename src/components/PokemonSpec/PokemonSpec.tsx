@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import './PokemonSpec.scss';
 import { PokemonData, Types } from '../../types/PokemonData';
 
@@ -7,7 +7,7 @@ interface Props {
   setChoosenPokemon: (pokemon: PokemonData | null) => void,
 }
 
-export const PokemonSpec: React.FC<Props> = ({ pokemon }) => {
+export const PokemonSpec: React.FC<Props> = memo(({ pokemon }) => {
 
   const types = pokemon?.types.map(
     (pokemon: Types) => pokemon.type.name)
@@ -88,4 +88,4 @@ export const PokemonSpec: React.FC<Props> = ({ pokemon }) => {
       )}
     </div>
   );
-};
+});

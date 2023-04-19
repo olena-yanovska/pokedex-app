@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import cn from 'classNames';
 import './Filter.scss';
 import { Colors } from '../../types/Colors';
@@ -29,7 +29,7 @@ const options = [
   'fairy',
 ]
 
-export const Filter: React.FC<Props> = ({ setActiveType }) => {
+export const Filter: React.FC<Props> = memo(({ setActiveType }) => {
   return (
     <div className="filter">
       <div>
@@ -63,4 +63,4 @@ export const Filter: React.FC<Props> = ({ setActiveType }) => {
       </div>
     </div>
   );
-};
+});

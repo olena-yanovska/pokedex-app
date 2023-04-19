@@ -1,4 +1,4 @@
-import React, { Dispatch } from 'react';
+import React, { Dispatch, memo } from 'react';
 import './PokemonList.scss';
 import { PokemonListData } from '../../types/PokemonListData';
 import { Pokemon } from '../Pokemon/Pokemon';
@@ -8,7 +8,7 @@ interface Props {
   setChoosenPokemon: Dispatch<any>,
 }
 
-export const PokemonList: React.FC<Props> = ({ pokemons, setChoosenPokemon }) => {
+export const PokemonList: React.FC<Props> = memo(({ pokemons, setChoosenPokemon }) => {
   return (
     <div className="pokemons-list">
       {pokemons && pokemons.map(pokemon => (
@@ -20,4 +20,4 @@ export const PokemonList: React.FC<Props> = ({ pokemons, setChoosenPokemon }) =>
       ))}
     </div>
   );
-};
+});

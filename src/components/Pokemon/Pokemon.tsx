@@ -1,4 +1,4 @@
-import React, { Dispatch } from 'react';
+import React, { Dispatch, memo } from 'react';
 import cn from 'classNames';
 import './Pokemon.scss';
 import { Colors } from '../../types/Colors';
@@ -8,7 +8,7 @@ interface Props {
   setChoosenPokemon: Dispatch<any>,
 }
 
-export const Pokemon: React.FC<Props> = ({ pokemon, setChoosenPokemon }) => {
+export const Pokemon: React.FC<Props> = memo(({ pokemon, setChoosenPokemon }) => {
   let imageUrl = './pokemon-default.png';
 
   if (pokemon.sprites?.other.dream_world.front_default) {
@@ -44,4 +44,4 @@ export const Pokemon: React.FC<Props> = ({ pokemon, setChoosenPokemon }) => {
       </div>
     </div>
   );
-};
+});
