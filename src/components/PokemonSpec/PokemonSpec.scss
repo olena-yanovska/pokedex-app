@@ -1,0 +1,79 @@
+@import "../../styles/utils/variables.scss";
+@import "../../styles/utils/mixins.scss";
+
+.pokemon-spec {
+  position: fixed;
+  top: 160px;
+  right: $pokemonInfoRightPosition;
+  display: inline-block;
+
+  text-align: center;
+  width: $pokemonInfoWidth;
+
+  padding: 20px 10px;
+
+  border: 1px solid #b4bdc4;
+  border-radius: 8px;
+
+  @include onMobile {
+    right: 20px;
+    width: $pokemonInfoWidthMob;
+    display: none;
+  }
+
+  @include onTablet {
+    right: 20px;
+    width: $pokemonInfoWidth;
+    display: inline-block;
+  }
+
+  @include onDesktop {
+    right: $pokemonInfoRightPosition;
+    width: $pokemonInfoWidth;
+    display: inline-block;
+  }
+
+  &__image {
+    height: 200px;
+    margin-bottom: 10px;
+  
+    @include onMobile {
+      height: 100px;
+    }
+  
+    @include onTablet {
+      height: 200px;
+    }
+  
+    @include onDesktop {
+      height: 200px;
+    }
+  }
+
+  &__name {
+    font-size: 30px;
+    font-weight: 600;
+  
+    text-transform: capitalize;
+    margin-bottom: 10px;
+  }
+}
+
+table, td {
+  border: 1px solid #b4bdc4;
+  border-radius: 4px;
+}
+
+.pokemon-table {
+  width: 90%;
+  margin: 0 auto;
+  border-collapse: collapse;
+
+  &__title {
+    width: 50%;
+  }
+
+  &__types {
+    text-transform: capitalize;
+  }
+}

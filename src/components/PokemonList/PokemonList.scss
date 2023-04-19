@@ -1,0 +1,23 @@
+@import "../../styles/utils/variables.scss";
+
+.pokemons-list {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 24px;
+
+  grid-template-columns: repeat(auto-fill, minmax($pokemonCardWidth, 1fr));
+
+  @include onDesktop {
+    grid-template-columns: repeat(auto-fill, minmax($pokemonCardWidth, 1fr));
+  }
+  
+  @include onTablet {
+    grid-template-columns: repeat(auto-fill, minmax($pokemonCardWidth, 1fr));
+  }
+
+  @include onMobile {
+    grid-template-columns: 1fr;
+  }
+}

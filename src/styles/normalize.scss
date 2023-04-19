@@ -1,0 +1,16 @@
+@import './utils/mixins.scss';
+@import './utils/variables.scss';
+
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Mont_Regular', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #0f0f11;
+}
