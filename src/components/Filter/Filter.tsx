@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import cn from 'classNames';
+import cn from 'classnames';
 import './Filter.scss';
 import { Colors } from '../../types/Colors';
 

@@ -1,5 +1,5 @@
 import React, { Dispatch, memo } from 'react';
-import cn from 'classNames';
+import cn from 'classnames';
 import './Pokemon.scss';
 import { Colors } from '../../types/Colors';
 

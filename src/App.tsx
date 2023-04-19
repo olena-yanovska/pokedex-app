@@ -4,7 +4,7 @@ import React, {
   useMemo, 
   useState 
 } from 'react';
-import cn from 'classNames';
+import cn from 'classnames';
 import axios from 'axios';
 import './App.scss';
 import { PokemonList } from './components/PokemonList/PokemonList';
