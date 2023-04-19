@@ -1,8 +1,4 @@
-@import "./styles/utils/variables.scss";
-
-// * {
-//   border: 1px solid black;
-// } 
+@import "./styles/utils/variables.scss"; 
 
 .App {
   margin: 0 auto;
@@ -38,6 +34,18 @@
 
   padding: 10px 100px;
 
+  @include onMobile {
+    padding: 10px 70px;
+  }
+
+  @include onTablet {
+    padding: 10px 100px;
+  }
+
+  @include onDesktop {
+    padding: 10px 100px;
+  }
+
   border: 4px solid #EF5350;
   border-radius: 10px;
 }
@@ -45,19 +53,30 @@
 .pokemons-wrapper {
   display: flex;
   flex-direction: row;
+  margin: 0 auto;
+
+
+
+  @include onMobile {
+    margin: 0 auto;
+  }
 }
 
 .pokemons-list-wrapper {
   width: 100%;
-  padding: 0 20px;
-  margin-right: 0;
+  padding: 0 30px;
+  margin-right: calc($pokemonInfoWidth + 60px);
 
   @include onDesktop {
-    margin-right: calc($pokemonInfoWidth + 30px); 
+    margin-right: calc($pokemonInfoWidth + 60px); 
   }
   
   @include onTablet {
-    margin-right: calc($pokemonInfoWidth + 30px); 
+    margin-right: calc($pokemonInfoWidth + 60px); 
+  }
+
+  @include onMobile {
+    margin-right: 0;
   }
 }
 

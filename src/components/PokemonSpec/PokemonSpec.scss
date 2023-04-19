@@ -5,18 +5,7 @@
   position: fixed;
   top: 160px;
   right: $pokemonInfoRightPosition;
-
-  @include onMobile {
-    right: 20px;
-  }
-
-  @include onTablet {
-    right: 20px;
-  }
-
-  @include onDesktop {
-    right: $pokemonInfoRightPosition;
-  }
+  display: inline-block;
 
   text-align: center;
   width: $pokemonInfoWidth;
@@ -25,11 +14,41 @@
 
   border: 1px solid #b4bdc4;
   border-radius: 8px;
+
+  @include onMobile {
+    right: 20px;
+    width: $pokemonInfoWidthMob;
+    display: none;
+  }
+
+  @include onTablet {
+    right: 20px;
+    width: $pokemonInfoWidth;
+    display: inline-block;
+  }
+
+  @include onDesktop {
+    right: $pokemonInfoRightPosition;
+    width: $pokemonInfoWidth;
+    display: inline-block;
+  }
 }
 
 .pokemon-spec__image {
   height: 200px;
   margin-bottom: 10px;
+
+  @include onMobile {
+    height: 100px;
+  }
+
+  @include onTablet {
+    height: 200px;
+  }
+
+  @include onDesktop {
+    height: 200px;
+  }
 }
 
 .pokemon-spec__name {

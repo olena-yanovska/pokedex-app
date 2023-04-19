@@ -12,7 +12,7 @@ export const App: React.FC = () => {
   const [choosenPokemon, setChoosenPokemon] = useState<any | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon/?limit=15&offset=0');
+  const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon/?limit=60&offset=0');
   const [isMoreAvailable, setIsMoreAvailable] = useState(true);
   const [activeType, setActiveType] = useState<string>('');
 

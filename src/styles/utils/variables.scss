@@ -3,16 +3,6 @@
 $pokemonCardWidth: 220px;
 
 $pokemonInfoWidth: 350px;
+$pokemonInfoWidthMob: 220px;
 $pokemonInfoRightPosition: 100px;
 
-@include onDesktop {
-  $pokemonInfoRightPosition: 100px;
-}
-
-@include onTablet {
-  $pokemonInfoRightPosition: 20px;
-}
-
-@include onMobile {
-  $pokemonInfoRightPosition: 20px;
-}
