@@ -4,6 +4,8 @@ Welcome to the Pokedex App, a web application that allows you to browse and sear
 ### Live Demo
 You can find a live demo of the app here https://olena-yanovska.github.io/pokedex-app/.
 
+<img src="https://user-images.githubusercontent.com/116846571/233090416-eeed8d68-4694-4001-b89a-83816589c7e4.PNG" width="500">
+
 ### Features
 - A list of Pokemon with their images and basic information
 - Filter Pokemons by their type
@@ -12,7 +14,10 @@ You can find a live demo of the app here https://olena-yanovska.github.io/pokede
 - Responsive design that works well on both desktop and mobile devices
 
 ### Technologies
-HTML, CSS, SCSS, JavaScript, TypeScript, React.js, Axios, Bulma styles
+[![](https://skills.thijs.gg/icons?i=html,css,js,react)](https://skills.thijs.gg)
+- TypeScript
+- Axios
+- Bulma styles
 
 
 ## Setup
