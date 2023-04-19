@@ -18,18 +18,18 @@
   @include onMobile {
     display: none;
   }
-}
 
-.filter__description{
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
+  &__description{
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
 
-.filter__option {
-  margin-right: 4px;
-  margin-bottom: 4px;
-  width: 70px;
-
-  text-transform: capitalize;
+  &__option {
+    margin-right: 4px;
+    margin-bottom: 4px;
+    width: 70px;
+  
+    text-transform: capitalize;
+  }
 }

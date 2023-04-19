@@ -37,49 +37,49 @@ export const PokemonSpec: React.FC<Props> = memo(({ pokemon }) => {
             <table className="pokemon-table">
               <tbody>
                 <tr>
-                  <td className="table-title">Type</td>
-                  <td className="table-value pokemon-table__types">{types}</td>
+                  <td className="pokemon-table__title">Type</td>
+                  <td className="pokemon-table__value pokemon-table__types">{types}</td>
                 </tr>
 
                 <tr>
-                  <td className="table-title">Attack</td>
-                  <td className="table-value">{pokemon?.stats[1].base_stat}</td>
+                  <td className="pokemon-table__title">Attack</td>
+                  <td className="pokemon-table__value">{pokemon?.stats[1].base_stat}</td>
                 </tr>
 
                 <tr>
-                  <td className="table-title">Defense</td>
-                  <td className="table-value">{pokemon?.stats[2].base_stat}</td>
+                  <td className="pokemon-table__title">Defense</td>
+                  <td className="pokemon-table__value">{pokemon?.stats[2].base_stat}</td>
                 </tr>
 
                 <tr>
-                  <td className="table-title">HP</td>
-                  <td className="table-value">{pokemon?.stats[0].base_stat}</td>
+                  <td className="pokemon-table__title">HP</td>
+                  <td className="pokemon-table__value">{pokemon?.stats[0].base_stat}</td>
                 </tr>
 
                 <tr>
-                  <td className="table-title">SP Attack</td>
-                  <td className="table-value">{pokemon?.stats[3].base_stat}</td>
+                  <td className="pokemon-table__title">SP Attack</td>
+                  <td className="pokemon-table__value">{pokemon?.stats[3].base_stat}</td>
                 </tr>
 
                 <tr>
-                  <td className="table-title">SP Defense</td>
-                  <td className="table-value">{pokemon?.stats[4].base_stat}</td>
+                  <td className="pokemon-table__title">SP Defense</td>
+                  <td className="pokemon-table__value">{pokemon?.stats[4].base_stat}</td>
                 </tr>
 
                 <tr>
-                  <td className="table-title">Speed</td>
-                  <td className="table-value">{pokemon?.stats[5].base_stat}</td>
+                  <td className="pokemon-table__title">Speed</td>
+                  <td className="pokemon-table__value">{pokemon?.stats[5].base_stat}</td>
                 </tr>
 
 
                 <tr>
-                  <td className="table-title">Weight</td>
-                  <td className="table-value">{pokemon?.weight}</td>
+                  <td className="pokemon-table__title">Weight</td>
+                  <td className="pokemon-table__value">{pokemon?.weight}</td>
                 </tr>
 
                 <tr>
-                  <td className="table-title">Total moves</td>
-                  <td className="table-value">{pokemon?.moves.length}</td>
+                  <td className="pokemon-table__title">Total moves</td>
+                  <td className="pokemon-table__value">{pokemon?.moves.length}</td>
                 </tr>
               </tbody>
             </table>

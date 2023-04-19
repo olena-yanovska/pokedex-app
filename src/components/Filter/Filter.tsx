@@ -49,10 +49,8 @@ export const Filter: React.FC<Props> = memo(({ setActiveType }) => {
               onClick={() => {
                 if (option === 'all') {
                   setActiveType('');
-                  console.log('option', option)
                 } else {
                   setActiveType(option);
-                  console.log('option', option)
                 }
               }}
             >

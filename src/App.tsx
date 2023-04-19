@@ -1,7 +1,12 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { 
+  useCallback, 
+  useEffect, 
+  useMemo, 
+  useState 
+} from 'react';
 import cn from 'classNames';
 import axios from 'axios';
-import './App.scss'
+import './App.scss';
 import { PokemonList } from './components/PokemonList/PokemonList';
 import { PokemonSpec } from './components/PokemonSpec/PokemonSpec';
 import { PokemonData } from './types/PokemonData';
@@ -11,7 +16,6 @@ export const App: React.FC = () => {
   const [pokemons, setPokemons] = useState<any[]>([]);
   const [choosenPokemon, setChoosenPokemon] = useState<any | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
   const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon/?limit=60&offset=0');
   const [isMoreAvailable, setIsMoreAvailable] = useState(true);
   const [activeType, setActiveType] = useState<string>('');
@@ -33,7 +37,6 @@ export const App: React.FC = () => {
 
       loadPokemonData(result.data.results);
     } catch (error) {
-      setIsError(true);
       console.log('Error with loading')
     } finally {
       setIsLoading(false);
@@ -62,13 +65,11 @@ export const App: React.FC = () => {
 
       try {
         const result = await axios.get(url);
-        console.log('url is', url);
 
         setUrl(result.data.next);
         loadPokemonData(result.data.results, true);
 
       } catch (error) {
-        setIsError(true);
         console.log('Error with loading')
       } finally {
         setIsLoading(false);

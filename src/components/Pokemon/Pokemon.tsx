@@ -21,17 +21,17 @@ export const Pokemon: React.FC<Props> = memo(({ pokemon, setChoosenPokemon }) =>
       onClick={() => setChoosenPokemon(pokemon)}
     >
       <img
-        className="pokemon-image"
+        className="pokemon-card__image"
         src={imageUrl}
         alt={pokemon.name}
       />
-      <div className='pokemon-name'>{pokemon.name}</div>
-      <div className='pokemon-types'>
+      <div className='pokemon-card__name'>{pokemon.name}</div>
+      <div className='pokemon-card__types'>
         {pokemon.types.map((pokemon: any) => {
           return (
             <button 
               className={cn(
-                'button is-static pokemon-type',
+                'button is-static pokemon-card__type',
                 Colors[pokemon.type.name]
               )}
               key={pokemon.type.name}
