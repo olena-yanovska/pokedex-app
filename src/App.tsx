@@ -11,12 +11,14 @@ import { PokemonList } from './components/PokemonList/PokemonList';
 import { PokemonSpec } from './components/PokemonSpec/PokemonSpec';
 import { PokemonData } from './types/PokemonData';
 import { Filter } from './components/Filter/Filter';
+import { getPokemons } from './api/getData';
+import { getPokemonData } from './api/getData';
 
 export const App: React.FC = () => {
   const [pokemons, setPokemons] = useState<any[]>([]);
   const [choosenPokemon, setChoosenPokemon] = useState<any | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon/?limit=60&offset=0');
+  const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon/?limit=30&offset=0');
   const [isMoreAvailable, setIsMoreAvailable] = useState(true);
   const [activeType, setActiveType] = useState<string>('');
 
@@ -28,25 +30,33 @@ export const App: React.FC = () => {
     }
   }, [pokemons, activeType]);
 
-  const loadPokemons = async () => {
-    try {
-      setIsLoading(true);
+  useEffect(() => {
+    const loadPokemons = async () => {
+      try {
+        setIsLoading(true);
+        const res = await getPokemons(url);
 
-      const result = await axios.get(url);
-      setUrl(result.data.next);
+        if (res) {
+          setUrl(res.next);
 
-      loadPokemonData(result.data.results);
-    } catch (error) {
-      console.log('Error with loading')
-    } finally {
-      setIsLoading(false);
-    }
-  };
+          const pokemons = loadPokemonData(res.results);
+
+          return pokemons;
+        }
+      } catch {
+        console.log('Error with loading pikemon list')
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadPokemons();
+  }, [])
 
   const loadPokemonData = async (result: any, isLoadMore = false) => {
     const promises = result.map(async (pokemon: PokemonData) => {
-      const result = await axios.get(pokemon.url);
-      return result.data;
+      const result = await getPokemonData(pokemon.url)
+      return result;
     });
 
     const pokemonData = await Promise.all(promises);
@@ -79,9 +89,9 @@ export const App: React.FC = () => {
     }
   }, [url, isMoreAvailable, loadPokemonData]);
 
-  useEffect(() => {
-    loadPokemons();
-  }, []);
+  // useEffect(() => {
+  //   loadPokemons();
+  // }, []);
 
   return (
     <div className="App">
